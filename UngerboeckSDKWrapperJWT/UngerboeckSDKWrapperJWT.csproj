@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <Configurations>Debug;Release;Debug-Local</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Ungerboeck.Api.Sdk</AssemblyName>
+    <RootNamespace>Ungerboeck.Api.Sdk</RootNamespace>
+    <LangVersion>7.1</LangVersion>
+    <PackageId>UngerboeckCurrentSDKWrapper</PackageId>
+    <Authors>Ungerboeck</Authors>
+    <Product>UngerboeckCurrentSDKWrapper</Product>
+    <Description>This is the SDK wrapper that has premade code to connect to the Ungerboeck API endpoints.</Description>
+    <Copyright>Copyright 2021</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageTags>Ungerboeck USI SDK API Model Models Endpoints</PackageTags>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">		
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\..\..\..\..\certificate\UngerboeckApi.snk</AssemblyOriginatorKeyFile>
+		<DelaySign>false</DelaySign>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Ungerboeck.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.12.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\UngerboeckSDKPackage\UngerboeckSDKPackageJWT\UngerboeckSDKPackageJWT.vbproj" />
+  </ItemGroup>
+
+</Project>
