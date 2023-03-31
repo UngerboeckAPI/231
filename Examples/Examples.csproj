@@ -280,12 +280,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UngerboeckSDKWrapperJWT\UngerboeckSDKWrapperJWT.csproj">
-      <Project>{6c5e2fc8-e244-447d-ac97-fbb76bebe7ce}</Project>
-      <Name>UngerboeckSDKWrapperJWT</Name>
-    </ProjectReference>
+    <PackageReference Include="Ungerboeck.Api.Sdk">
+      <Version>1.231.2.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

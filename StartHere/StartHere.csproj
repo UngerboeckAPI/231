@@ -14,8 +14,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ungerboeck.Api.Sdk" Version="1.231.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Examples\Examples.csproj" />
-    <ProjectReference Include="..\UngerboeckSDKWrapperJWT\UngerboeckSDKWrapperJWT.csproj" />
   </ItemGroup>
 
   <ItemGroup>
