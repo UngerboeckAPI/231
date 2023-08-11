@@ -52,11 +52,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Ungerboeck.Api.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bin\netstandard2.0\Ungerboeck.Api.Models.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Operations\ContactExternalIds.cs" />
@@ -281,7 +276,7 @@
       <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="Ungerboeck.Api.Sdk">
-      <Version>1.231.2.2</Version>
+      <Version>1.231.4.10</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
