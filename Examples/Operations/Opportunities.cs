@@ -43,7 +43,8 @@ namespace Examples.Operations
       //Note for multi-value UDFs, it will convert to a CONTAINS search.
 
       //This is searching for Opportunity user fields of Issue Class = C (event sales), Issue Type code = 13, organization code = 10, and User Text 09 (TXT_09).  It will return opportunities where the value is 'N'      
-      return apiClient.Endpoints.Opportunities.Search(orgCode, "C|13|10|UserText09 eq 'N'");
+      //Note that the Select is optional.  You can opt not to include it for a slightly faster efficiency boost for the response, but we include it here to prove the returned value.
+      return apiClient.Endpoints.Opportunities.Search(orgCode, "C|13|10|UserText09 eq 'N'", new Ungerboeck.Api.Models.Options.Search { Select = { "C|13|UserText09" } });
     }
 
     /// <summary>

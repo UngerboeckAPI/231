@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Operations\Allergies.cs" />
+    <Compile Include="Operations\AutomaticVouchers.cs" />
     <Compile Include="Operations\ContactExternalIds.cs" />
     <Compile Include="Operations\AccountLeads.cs" />
     <Compile Include="Operations\Authorizations.cs" />
@@ -74,6 +76,9 @@
     <Compile Include="Operations\CoreDimensions.cs" />
     <Compile Include="Operations\DailyRevenueJobControls.cs" />
     <Compile Include="Operations\Emails.cs" />
+    <Compile Include="Operations\EventExternalIds.cs" />
+    <Compile Include="Operations\EventOpportunityExternalIds.cs" />
+    <Compile Include="Operations\EventOpportunityFlowPattern.cs" />
     <Compile Include="Operations\EventPerformingArts.cs" />
     <Compile Include="Operations\EventPortalMessages.cs" />
     <Compile Include="Operations\EventProfiles.cs" />
@@ -155,11 +160,14 @@
     <Compile Include="Operations\ManagementReportCodes.cs" />
     <Compile Include="Operations\MarketListItems.cs" />
     <Compile Include="Operations\MarketLists.cs" />
+    <Compile Include="Operations\MeetingAttendees.cs" />
     <Compile Include="Operations\Meetings.cs" />
     <Compile Include="Operations\MembershipAccountItems.cs" />
     <Compile Include="Operations\MembershipCards.cs" />
     <Compile Include="Operations\MembershipEngagements.cs" />
     <Compile Include="Operations\MembershipEngagementTypes.cs" />
+    <Compile Include="Operations\OrderAllergies.cs" />
+    <Compile Include="Operations\Organizations.cs" />
     <Compile Include="Operations\PhysicalCountInventoryBatchHeaders.cs" />
     <Compile Include="Operations\PurchaseOrderApprovalLevels.cs" />
     <Compile Include="Operations\PurchaseOrderDistributions.cs" />
@@ -266,17 +274,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client">
       <Version>5.2.7</Version>
     </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
-    </PackageReference>
     <PackageReference Include="Ungerboeck.Api.Sdk">
-      <Version>1.231.4.10</Version>
+      <Version>1.231.5.5</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

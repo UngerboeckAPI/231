@@ -49,7 +49,6 @@ namespace Examples.Operations
         SubordinateOrganizationCode = orgCode, //Note that multi-organization relationships aren't yet supported by the API.
         EventSalesDesignation = eventSalesDesignation        
       };
-
       return apiClient.Endpoints.Relationships.Add( myRelationship);
     }
 
@@ -62,7 +61,27 @@ namespace Examples.Operations
 
       myRelationship.RelationshipNote = newRelationshipText;
 
-      return apiClient.Endpoints.Relationships.Update( myRelationship);
+      var options = new Ungerboeck.Api.Models.Options.Subjects.Relationships() { AllowAccountToRelateItself = true };
+      return apiClient.Endpoints.Relationships.Update( myRelationship, options);
+    }
+
+    /// <summary>
+    /// Add without warning of account relate to itself.
+    /// </summary>
+    public RelationshipsModel AddWithoutSameAccountWarning(string orgCode, string masterAccountCode,string subordinateAccountCode, string relationshipType, string eventSalesDesignation)
+    {
+      var myRelationship = new RelationshipsModel
+      {
+        MasterOrganizationCode = orgCode,
+        MasterAccountCode = masterAccountCode,
+        SubordinateAccountCode = subordinateAccountCode,
+        RelationshipType = relationshipType,
+        SubordinateOrganizationCode = orgCode,
+        EventSalesDesignation = eventSalesDesignation
+      };
+
+      var options = new Ungerboeck.Api.Models.Options.Subjects.Relationships() { AllowAccountToRelateItself = true };
+      return apiClient.Endpoints.Relationships.Add(myRelationship, options);
     }
 
     /// <summary>

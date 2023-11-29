@@ -121,6 +121,16 @@ namespace Ungerboeck.Api.Sdk
       }
     }
 
+    private Allergies AllergiesApi;
+    public Allergies Allergies
+    {
+      get
+      {
+        if (AllergiesApi == null) AllergiesApi = new Allergies(client);
+        return AllergiesApi;
+      }
+    }
+
     private AlternateAddresses AlternateAddressesApi;
     public AlternateAddresses AlternateAddresses
     {
@@ -201,6 +211,16 @@ namespace Ungerboeck.Api.Sdk
       }
     }
 
+    private AutomaticVouchers AutomaticVouchersApi;
+    public AutomaticVouchers AutomaticVouchers
+    {
+      get
+      {
+        if (AutomaticVouchersApi == null) AutomaticVouchersApi = new AutomaticVouchers(client);
+        return AutomaticVouchersApi;
+      }
+    }
+
     private ApiUtility ApiUtilityApi;
     public ApiUtility ApiUtility
     {
@@ -258,6 +278,16 @@ namespace Ungerboeck.Api.Sdk
       {
         if (BookingsApi == null) BookingsApi = new Bookings(client);
         return BookingsApi;
+      }
+    }
+
+    private BookingsAvailabilitySearch BookingsAvailabilitySearchApi;
+    public BookingsAvailabilitySearch BookingsAvailabilitySearch
+    {
+      get
+      {
+        if (BookingsAvailabilitySearchApi == null) BookingsAvailabilitySearchApi = new BookingsAvailabilitySearch(client);
+        return BookingsAvailabilitySearchApi;
       }
     }
 
@@ -561,6 +591,16 @@ namespace Ungerboeck.Api.Sdk
       }
     }
 
+    private EventExternalIds EventExternalIdsApi;
+    public EventExternalIds EventExternalIds
+    {
+      get
+      {
+        if (EventExternalIdsApi == null) EventExternalIdsApi = new EventExternalIds(client);
+        return EventExternalIdsApi;
+      }
+    }
+
     private EventJobCategories EventJobCategoriesApi;
     public EventJobCategories EventJobCategories
     {
@@ -588,6 +628,26 @@ namespace Ungerboeck.Api.Sdk
       {
         if (EventJobTypesApi == null) EventJobTypesApi = new EventJobTypes(client);
         return EventJobTypesApi;
+      }
+    }
+
+    private EventOpportunityFlowPattern EventOpportunityFlowPatternApi;
+    public EventOpportunityFlowPattern EventOpportunityFlowPattern
+    {
+      get
+      {
+        if (EventOpportunityFlowPatternApi == null) EventOpportunityFlowPatternApi = new EventOpportunityFlowPattern(client);
+        return EventOpportunityFlowPatternApi;
+      }
+    }
+
+    private EventOpportunityExternalIds EventOpportunityExternalIdsApi;
+    public EventOpportunityExternalIds EventOpportunityExternalIds
+    {
+      get
+      {
+        if (EventOpportunityExternalIdsApi == null) EventOpportunityExternalIdsApi = new EventOpportunityExternalIds(client);
+        return EventOpportunityExternalIdsApi;
       }
     }
 
@@ -1222,6 +1282,16 @@ namespace Ungerboeck.Api.Sdk
       }
     }
 
+    private MeetingAttendees MeetingAttendeesApi;
+    public MeetingAttendees MeetingAttendees
+    {
+      get
+      {
+        if (MeetingAttendeesApi == null) MeetingAttendeesApi = new MeetingAttendees(client);
+        return MeetingAttendeesApi;
+      }
+    }
+
     private MeetingNotes MeetingNotesApi;
     public MeetingNotes MeetingNotes
     {
@@ -1332,6 +1402,16 @@ namespace Ungerboeck.Api.Sdk
       }
     }
 
+    private OrderAllergies OrderAllergiesApi;
+    public OrderAllergies OrderAllergies
+    {
+      get
+      {
+        if (OrderAllergiesApi == null) OrderAllergiesApi = new OrderAllergies(client);
+        return OrderAllergiesApi;
+      }
+    }
+
     private OrderRegistrants OrderRegistrantsApi;
     public OrderRegistrants OrderRegistrants
     {
@@ -1349,6 +1429,16 @@ namespace Ungerboeck.Api.Sdk
       {
         if (OrderStatusesApi == null) OrderStatusesApi = new OrderStatuses(client);
         return OrderStatusesApi;
+      }
+    }
+
+    private Organizations OrganizationsApi;
+    public Organizations Organizations
+    {
+      get
+      {
+        if (OrganizationsApi == null) OrganizationsApi = new Organizations(client);
+        return OrganizationsApi;
       }
     }
 

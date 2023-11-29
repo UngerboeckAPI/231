@@ -18,7 +18,7 @@ namespace Examples.Operations
     /// </summary>
     public SpacesModel Get(string orgCode, string code)
     {
-      return apiClient.Endpoints.Spaces.Get( orgCode, code);
+      return apiClient.Endpoints.Spaces.Get(orgCode, code);
     }
 
     /// <summary>
@@ -54,6 +54,22 @@ namespace Examples.Operations
       mySpace.SpaceDescription = newText;
 
       return apiClient.Endpoints.Spaces.Update( mySpace);
+    }
+
+    /// <summary>
+    /// Adding with a venue set
+    /// </summary> 
+    public SpacesModel AddWithVenue(string orgCode, string code, string Text, int venueCode)
+    {
+      var mySpace = new SpacesModel
+      {
+        Organization = orgCode,
+        Code = code,
+        SpaceDescription = Text,
+        Venue = venueCode
+      };
+
+      return apiClient.Endpoints.Spaces.Add(mySpace);
     }
   }
 }

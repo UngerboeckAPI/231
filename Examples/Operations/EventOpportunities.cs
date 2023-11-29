@@ -5,6 +5,7 @@ using Ungerboeck.Api.Models.Subjects;
 using Ungerboeck.Api.Models.Search;
 using System.Collections.Generic;
 using System;
+using System.Threading.Tasks;
 
 namespace Examples.Operations
 {
@@ -36,7 +37,7 @@ namespace Examples.Operations
     /// <returns>Added EventOpportunitiesModel</returns>
     public EventOpportunitiesModel Add()
     {
-      var EventOpportunitiesModel = new EventOpportunitiesModel
+      var eventOpportunitiesModel = new EventOpportunitiesModel
       {
         Description = "UPI Test Meeting",
         Account = "00027399",
@@ -48,7 +49,7 @@ namespace Examples.Operations
         Status = "80"
       };
 
-      return apiClient.Endpoints.EventOpportunities.Add( EventOpportunitiesModel);
+      return apiClient.Endpoints.EventOpportunities.Add(eventOpportunitiesModel);
     }
 
     /// <summary>
@@ -57,7 +58,7 @@ namespace Examples.Operations
     /// <returns>Added EventOpportunitiesModel</returns>
     public EventOpportunitiesModel Add_Another()
     {
-      var EventOpportunitiesModel = new EventOpportunitiesModel
+      var eventOpportunitiesModel = new EventOpportunitiesModel
       {
         Description = "UPI ABC Board Meet",
         Account = "00000083",
@@ -69,7 +70,47 @@ namespace Examples.Operations
         Status = "30"
       };
 
-      return apiClient.Endpoints.EventOpportunities.Add( EventOpportunitiesModel);
+      return apiClient.Endpoints.EventOpportunities.Add(eventOpportunitiesModel);
+    }
+
+    /// <summary>
+    /// Simple example for generating an event opportunity with user defined fields to add
+    /// </summary>
+    /// <returns>Example Event Opportunities Model to Add</returns>
+    public EventOpportunitiesModel GenerateAddUserDefinedFields()
+    {
+      var eventOpportunitiesModel = new EventOpportunitiesModel
+      {
+        Description = "My Event Opportunity with User Fields",
+        Account = "00000083",
+        Organization = "10",
+        PreferredStartDate = Convert.ToDateTime("2023-02-20 00:00:00"),
+        PreferredEndDate = Convert.ToDateTime("2023-02-23 00:00:00"),
+        HousingStart = Convert.ToDateTime("2023-02-20 00:00:00"),
+        HousingEnd = Convert.ToDateTime("2023-02-24 00:00:00"),
+        Status = "30"
+      };
+
+      eventOpportunitiesModel.EventOpportunityUserFields = new UserFields
+      {
+        Class = "C",
+        Type = "0A",
+        UserText01 = "Text Value for your User Defined Field #1",
+        UserText02 = "Text Value for your User Defined Field #2",
+        UserNumber01 = 100
+      };
+
+      return eventOpportunitiesModel;
+    }
+
+    /// <summary>
+    /// Simple add example for an event opportunity with user defined fields
+    /// </summary>
+    /// <returns>Added event opportunity model</returns>
+    public EventOpportunitiesModel AddUserDefinedFields()
+    {
+      EventOpportunitiesModel eventOpportunitiesModel = GenerateAddUserDefinedFields();
+      return apiClient.Endpoints.EventOpportunities.Add(eventOpportunitiesModel);
     }
 
     /// <summary>
@@ -94,7 +135,7 @@ namespace Examples.Operations
     /// <summary>
     /// This example is designed to show sample values to use in other editable properties.  For more information, see the model property info in the /api/help sandbox.
     /// </summary>
-    public EventOpportunitiesModel EditAdvanced(string orgCode, int meetingSequence,string desc)
+    public EventOpportunitiesModel EditAdvanced(string orgCode, int meetingSequence, string desc)
     {
       var meetingToUpdate = apiClient.Endpoints.EventOpportunities.Get( orgCode, meetingSequence);
 
@@ -230,6 +271,55 @@ namespace Examples.Operations
       meetingToUpdate.ExpectedCloseDate = Convert.ToDateTime("1900-01-01 00:00:00");
 
       return apiClient.Endpoints.EventOpportunities.Update(meetingToUpdate);
+    }
+
+    /// <summary>
+    /// Simple example for generating an event opportunity with user defined fields with edited values
+    /// </summary>
+    /// <param name="strOrgCode"></param>
+    /// <param name="intMeetingSeq"></param>
+    /// <returns>Example Event Opportunities Model with Edits</returns>
+    public EventOpportunitiesModel GenerateEditUserDefinedFields(string strOrgCode, int intMeetingSeq)
+    {
+      var eventOpportunity = apiClient.Endpoints.EventOpportunities.Get(strOrgCode, intMeetingSeq);
+      eventOpportunity.EventOpportunityUserFields.UserText01 = "Edited Text Value for your User Defined Field #1";
+      eventOpportunity.EventOpportunityUserFields.UserText02 = "Edited Text Value for your User Defined Field #2";
+      eventOpportunity.EventOpportunityUserFields.UserNumber01 = 101;
+      return apiClient.Endpoints.EventOpportunities.Update(eventOpportunity);
+    }
+
+    /// <summary>
+    /// Simple edit example for an event opportunity with user defined fields
+    /// </summary>
+    /// <param name="strOrgCode"></param>
+    /// <param name="intMeetingSeq"></param>
+    /// <returns>Edited event opportunity model</returns>
+    public EventOpportunitiesModel EditUserDefinedFields(string strOrgCode, int intMeetingSeq)
+    {
+      var eventOpportunity = GenerateEditUserDefinedFields(strOrgCode, intMeetingSeq);
+      return apiClient.Endpoints.EventOpportunities.Update(eventOpportunity);
+    }
+
+    /// <summary>
+    /// This example is designed to show sample values to use when creating a new event from an event opportunity
+    /// </summary>
+    /// <param name="orgCode"></param>
+    /// <param name="meetingSequence"></param>
+    /// <returns></returns>
+    public EventsModel CreateEvent(string orgCode, int meetingSequence)
+    {
+      return apiClient.Endpoints.EventOpportunities.CreateEvent(orgCode, meetingSequence);
+    }
+
+    /// <summary>
+    /// This example is designed to show sample values to use when creating a new event from an event opportunity
+    /// </summary>
+    /// <param name="orgCode"></param>
+    /// <param name="meetingSequence"></param>
+    /// <returns></returns>
+    public Task<EventsModel> CreateEventAsync(string orgCode, int meetingSequence)
+    {
+      return apiClient.Endpoints.EventOpportunities.CreateEventAsync(orgCode, meetingSequence);
     }
   }
 }

@@ -14,11 +14,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ungerboeck.Api.Sdk" Version="1.231.4.10" />
+    <PackageReference Include="Ungerboeck.Api.Sdk" Version="1.231.5.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Examples\Examples.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ungerboeck.Api.Models">
+      <HintPath>..\..\..\Bin\netstandard2.0\Ungerboeck.Api.Models.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -28,5 +28,13 @@ namespace Examples.Operations
     {
       return apiClient.Endpoints.Setups.Search(orgCode, $"{nameof(SetupsModel.Description)} eq '{searchValue}'");
     }
+
+    /// <summary>
+    /// A search example.  Check out the 'Search using the API' knowledge base article for more info.
+    /// </summary> 
+    public SearchResponse<SetupsModel> Search(string orgCode, string typeValue, string descValue)
+    {
+      return apiClient.Endpoints.Setups.Search(orgCode, $"{nameof(SetupsModel.Type)} eq '{typeValue}' and substringof('{descValue}', {nameof(SetupsModel.Description)})");
+    }
   }
 }

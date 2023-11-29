@@ -38,9 +38,21 @@ namespace Examples.Operations
     }
 
     /// <summary>
+    /// A basic edit example
+    /// </summary> 
+    public EventServicesModel Edit(string orgCode, int eventID, int sequenceNumber, string newNote)
+    {
+      var eventService = apiClient.Endpoints.EventServices.Get(orgCode, eventID, sequenceNumber);
+
+      eventService.Note1 = newNote;
+
+      return apiClient.Endpoints.EventServices.Update(eventService);
+    }
+
+    /// <summary>
     /// A basic edit example with a constructed EventServiceModel object
     /// </summary> 
-    public EventServicesModel Edit(EventServicesModel myEventService)
+    public EventServicesModel EditAdvanced(EventServicesModel myEventService)
     {
       return apiClient.Endpoints.EventServices.Update( myEventService);
     }

@@ -338,7 +338,14 @@ namespace Ungerboeck.Api.Sdk.Endpoints
       PrepForLaunch(client, ref URL, ref headers, ref options);
       try
       {
-        response = await HttpClientExtensions.PostAsJsonAsync(client, $"{client.HttpClient.BaseAddress}/api/v1/{URL}", item, headers).ConfigureAwait(false);
+        if (item != null)
+        {
+          response = await HttpClientExtensions.PostAsJsonAsync(client, $"{client.HttpClient.BaseAddress}/api/v1/{URL}", item, headers).ConfigureAwait(false);
+        }
+        else
+        {
+          response = await HttpClientExtensions.PostAsJsonAsync(client, $"{client.HttpClient.BaseAddress}/api/v1/{URL}", headers).ConfigureAwait(false);
+        }
       }
       catch (Exception ex)
       {
@@ -347,6 +354,7 @@ namespace Ungerboeck.Api.Sdk.Endpoints
 
       return await HandleResponse<U>(client, response);
     }
+
 
     private static async Task<U> HandleResponse<U>(ApiClient client, HttpResponseMessage response)
     {

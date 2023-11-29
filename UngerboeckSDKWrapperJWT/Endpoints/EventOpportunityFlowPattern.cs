@@ -1,18 +1,17 @@
-using Ungerboeck.Api.Models;
+﻿using Ungerboeck.Api.Models;
 using Ungerboeck.Api.Models.Subjects;
 using System.Collections.Generic;
 using Ungerboeck.Api.Models.Options;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Ungerboeck.Api.Sdk.Endpoints
 {
   /// <summary>
   /// Find endpoint calls for this subject here.
   /// </summary>
-  public class EventOpportunities : Base<EventOpportunitiesModel>
+  public class EventOpportunityFlowPattern : Base<EventOpportunityFlowPatternModel>
   {
-    protected internal EventOpportunities(ApiClient api) : base(api) { }
+    protected internal EventOpportunityFlowPattern(ApiClient api) : base(api) { }
 
     /// <summary>
     /// Use this endpoint to search for a list of this subject.
@@ -22,7 +21,7 @@ namespace Ungerboeck.Api.Sdk.Endpoints
     /// <param name="searchOData">Fill this with OData to query for what you are looking for.  We highly suggest reading our 'Search Using the API' knowledge base article or Ungerboeck API Github examples to learn how to do this. </param>
     /// <param name="options">This contains optional configurations used for searching.</param>
     /// <returns>A list of this subject's model.</returns>
-    public new Ungerboeck.Api.Models.Search.SearchResponse<EventOpportunitiesModel> Search(string orgCode, string searchOData, Search options = null)
+    public new Ungerboeck.Api.Models.Search.SearchResponse<EventOpportunityFlowPatternModel> Search(string orgCode, string searchOData, Search options = null)
     {
       return base.Search(orgCode, searchOData, options);
     }
@@ -30,11 +29,14 @@ namespace Ungerboeck.Api.Sdk.Endpoints
     /// <summary>
     /// Use this endpoint to get a single entry of this subject with parameters.
     /// </summary>
+    /// <param name="orgCode">Fill this with the Organization Code in which the search will take place.</param>
+    /// <param name="meetingTourSequenceNbr">Fill this with the Meeting Tour Sequence in which the search will take place.</param>
+    /// <param name="flowSequenceNumber">Fill this with the Flow Sequence Number in which the search will take place.</param>
     /// <param name="options">This contains optional configurations.</param>
     /// <returns>A single model for this subject.</returns>
-    public EventOpportunitiesModel Get(string orgCode, int meetingSequence, Ungerboeck.Api.Models.Options.Subjects.EventOpportunities options = null)
+    public EventOpportunityFlowPatternModel Get(string orgCode, int meetingTourSequenceNbr, int flowSequenceNumber, Ungerboeck.Api.Models.Options.Subjects.EventOpportunityFlowPattern options = null)
     {
-      return base.Get(new { orgCode, meetingSequence }, options);
+      return base.Get(new { orgCode, meetingTourSequenceNbr, flowSequenceNumber }, options);
     }
 
     /// <summary>
@@ -43,9 +45,9 @@ namespace Ungerboeck.Api.Sdk.Endpoints
     /// <param name="model">This should contain a filled model of this subject.  Note that any null model properties will be ignored for the save.</param>
     /// <param name="options">This contains optional configurations.</param>
     /// <returns>An updated, single model for this subject.</returns>
-    public EventOpportunitiesModel Update(EventOpportunitiesModel model, Ungerboeck.Api.Models.Options.Subjects.EventOpportunities options = null)
+    public EventOpportunityFlowPatternModel Update(EventOpportunityFlowPatternModel model, Ungerboeck.Api.Models.Options.Subjects.EventOpportunityFlowPattern options = null)
     {
-      return base.Update(new { model.Organization, model.MeetingSequence }, model, options);
+      return base.Update(new { model.OrganizationCode, model.MeetingTourSequenceNbr, model.FlowSequenceNumber }, model, options);
     }
 
     /// <summary>
@@ -54,35 +56,22 @@ namespace Ungerboeck.Api.Sdk.Endpoints
     /// <param name="model">This should contain a filled model of this subject.  Note that any null model properties will be ignored for the save.</param>
     /// <param name="options">This contains optional configurations.</param>
     /// <returns>A newly added, single model for this subject.</returns>
-    public EventOpportunitiesModel Add(EventOpportunitiesModel model, Ungerboeck.Api.Models.Options.Subjects.EventOpportunities options = null)
+    public EventOpportunityFlowPatternModel Add(EventOpportunityFlowPatternModel model, Ungerboeck.Api.Models.Options.Subjects.EventOpportunityFlowPattern options = null)
     {
       return base.Add(model, options);
     }
 
     /// <summary>
-    /// Custom endpoint.  Create a new Event from an existing event opportunity.
+    /// Use this endpoint to delete a single entry of this subject.
     /// </summary>
-    /// <param name="orgCode">The organization code of the event opportunity.</param>
-    /// <param name="meetingSequence">The sequence of the event opportunity.</param>
-    /// <returns>Newly added EventOpportunitiesModel</returns>
-    public EventsModel CreateEvent(string orgCode, int meetingSequence, Ungerboeck.Api.Models.Options.Subjects.EventOpportunities options = null)
+    /// <param name="orgCode">Fill this with the Organization Code of the flow record to delete</param>
+    /// <param name="meetingTourSequenceNbr">Fill this with the Meeting Tour Sequence of the flow record.</param>
+    /// <param name="flowSequenceNumber">Fill this with the Flow Sequence Number of the flow record.</param>
+    /// <param name="options">This contains optional configurations.</param>
+    /// <returns>Nothing if successful.</returns>
+    public HttpResponseMessage Delete(string orgCode, int meetingTourSequenceNbr, int flowSequenceNumber, Ungerboeck.Api.Models.Options.Subjects.EventOpportunityFlowPattern options = null)
     {
-      var task = CreateEventAsync(orgCode, meetingSequence, options);
-      return CustomSync(task);
+      return base.Delete(new { orgCode, meetingTourSequenceNbr, flowSequenceNumber }, options);
     }
-
-    /// <summary>
-    /// Custom endpoint.  Create a new Event from an existing event opportunity.
-    /// </summary>
-    /// <param name="orgCode">The organization code of the event opportunity.</param>
-    /// <param name="meetingSequence">The sequence of the event opportunity.</param>
-    /// <returns>Newly added EventOpportunitiesModel</returns>
-    public Task<EventsModel> CreateEventAsync(string orgCode, int meetingSequence, Ungerboeck.Api.Models.Options.Subjects.EventOpportunities options = null)
-    {
-      object item = null; //This endpoint does not have a posted item
-      Task<EventsModel> response = PostAsync<object, EventsModel>(Client, $"EventOpportunities/{orgCode}/{meetingSequence}/CreateEvent", item, options);
-      return response;
-    }
-
   }
 }

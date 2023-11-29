@@ -7,6 +7,8 @@ using Ungerboeck.Api.Models.Bulk;
 using System.Collections.Generic;
 using System;
 using System.Data;
+using System.Threading.Tasks;
+using Ungerboeck.Api.Models.Subjects.AvailabilitySearch;
 
 namespace Examples.Operations
 {
@@ -263,6 +265,77 @@ namespace Examples.Operations
 
 
       return apiClient.Endpoints.Bookings.Bulk( myBulkRequest, options);
+    }
+
+
+    /// <summary>
+    /// Example of a basic availability search
+    /// </summary>
+    public Task<List<ResponseModel>> AvailabilitySearchAsync(RequestModel body)
+    {
+      return apiClient.Endpoints.BookingsAvailabilitySearch.AvailabilitySearchAsync(body);
+    }
+
+    /// <summary>
+    /// Example of a basic availability search with minimum search filters
+    /// </summary>
+    public Task<List<ResponseModel>> AvailabilitySearchAsyncBasic(DateTime startRange, DateTime endRange, int frequency, 
+                                                                   List<DayOfWeek> searchDays, int recurrenceFactor, string orgCode, List<string> listOfSpaceCodes)
+    {
+      var body = new RequestModel()
+      {
+        Start = startRange,
+        End = endRange,
+        Frequency = frequency,
+        SearchDays = searchDays,
+        RecurrenceFactor = recurrenceFactor,
+        OrganizationCode = orgCode,
+        Spaces = listOfSpaceCodes
+      };
+
+      return apiClient.Endpoints.BookingsAvailabilitySearch.AvailabilitySearchAsync(body);
+    }
+
+    /// <summary>
+    /// Example of an availability search with a duration
+    /// </summary>
+    public Task<List<ResponseModel>> AvailabilitySearchAsyncWithDuration(DateTime startRange, DateTime endRange, int frequency,
+                                                               List<DayOfWeek> searchDays, int recurrenceFactor, string orgCode, List<string> listOfSpaceCodes, DurationModel duration)
+    {
+      var body = new RequestModel()
+      {
+        Start = startRange,
+        End = endRange,
+        Frequency = frequency,
+        SearchDays = searchDays,
+        RecurrenceFactor = recurrenceFactor,
+        OrganizationCode = orgCode,
+        Spaces = listOfSpaceCodes,
+        Duration = duration
+      };
+
+      return apiClient.Endpoints.BookingsAvailabilitySearch.AvailabilitySearchAsync(body);
+    }
+
+    /// <summary>
+    /// Example of an availability search with a block of consecutive days
+    /// </summary>    
+    public Task<List<ResponseModel>> AvailabilitySearchAsyncWithConsecutiveDays(DateTime startRange, DateTime endRange, int frequency,
+                                                           List<DayOfWeek> searchDays, int recurrenceFactor, string orgCode, List<string> listOfSpaceCodes, int consecutiveDays)
+    {
+      var body = new RequestModel()
+      {
+        Start = startRange,
+        End = endRange,
+        Frequency = frequency,
+        SearchDays = searchDays,
+        RecurrenceFactor = recurrenceFactor,
+        OrganizationCode = orgCode,
+        Spaces = listOfSpaceCodes,
+        ConsecutiveDays = consecutiveDays
+      };
+
+      return apiClient.Endpoints.BookingsAvailabilitySearch.AvailabilitySearchAsync(body);
     }
   }
 }
