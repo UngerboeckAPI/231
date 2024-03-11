@@ -9,16 +9,6 @@ namespace Ungerboeck.Api.Sdk.Endpoints
   internal static class HttpClientExtensions
   {
 
-    public static Task<HttpResponseMessage> PostAsJsonAsync(ApiClient client, string url, Dictionary<string, string> headers)
-    {
-      var dataAsString = JsonConvert.SerializeObject(null);
-      var content = new StringContent(dataAsString);
-      content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-      AddHeaders(headers, content);
-
-      return client.HttpClient.PostAsync(url, content);
-    }
-
     public static Task<HttpResponseMessage> PostAsJsonAsync<T>(ApiClient client, string url, T data, Dictionary<string, string> headers)
     {
       var dataAsString = JsonConvert.SerializeObject(data);

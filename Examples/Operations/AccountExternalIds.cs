@@ -85,6 +85,17 @@ namespace Examples.Operations
     }
 
     /// <summary>
+    /// A basic edit example for Text ID
+    /// </summary> 
+    public AccountExternalIdsModel EditWithParameter(int id, string newTextId)
+    {
+      var myExternalSystem = apiClient.Endpoints.AccountExternalIds.Get(id);
+      myExternalSystem.TextID = newTextId;
+
+      return apiClient.Endpoints.AccountExternalIds.Update(id, myExternalSystem);
+    }
+
+    /// <summary>
     /// A basic delete example.
     /// </summary>
     public HttpResponseMessage Delete(int id)

@@ -1,6 +1,7 @@
 ﻿using Ungerboeck.Api.Models.Subjects;
 using Ungerboeck.Api.Models.Options;
 using System.Net.Http;
+using System;
 
 namespace Ungerboeck.Api.Sdk.Endpoints
 {
@@ -39,9 +40,21 @@ namespace Ungerboeck.Api.Sdk.Endpoints
     /// <param name="model">This should contain a filled model of this subject.  Note that any null model properties will be ignored for the save.</param>
     /// <param name="options">This contains optional configurations.</param>
     /// <returns>An updated, single model for this subject.</returns>
+    [Obsolete("Use the function with the id parameter instead")]
     public AccountExternalIdsModel Update(AccountExternalIdsModel model, Ungerboeck.Api.Models.Options.Subjects.AccountExternalIds options = null)
     {
       return base.Update(new { model.ID }, model, options);
+    }
+
+    /// <summary>
+    /// Use this endpoint to edit a single entry of this subject.
+    /// </summary>
+    /// <param name="model">This should contain a filled model of this subject.  Note that any null model properties will be ignored for the save.</param>
+    /// <param name="options">This contains optional configurations.</param>
+    /// <returns>An updated, single model for this subject.</returns>
+    public AccountExternalIdsModel Update(int id,AccountExternalIdsModel model, Ungerboeck.Api.Models.Options.Subjects.AccountExternalIds options = null)
+    {
+      return base.Update(new { id }, model, options);
     }
 
     /// <summary>

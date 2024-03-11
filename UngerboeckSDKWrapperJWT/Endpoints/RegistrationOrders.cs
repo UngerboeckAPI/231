@@ -3,7 +3,6 @@ using Ungerboeck.Api.Models.Subjects;
 using System.Collections.Generic;
 using Ungerboeck.Api.Models.Options;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Ungerboeck.Api.Sdk.Endpoints
 {
@@ -93,26 +92,6 @@ namespace Ungerboeck.Api.Sdk.Endpoints
     {
       System.Threading.Tasks.Task<RegistrationOrdersModel> registrationOrderTask = PostAsync(Client, "RegistrationOrders/CalculateTaxes", registrationOrder, options);
       return CustomSync(registrationOrderTask);
-    }
-
-    /// <summary>
-    /// You can do multiple save operations in one transaction.  See the API Help sandbox for a list of what has Bulk.
-    /// </summary>
-    /// <param name="bulkRequestModel">This contains the list of bulk items, as well as the choice to continue on failure of a save.</param>
-    /// <returns>BuldResponseModel, containing the results of the bulk process</returns>
-    public Ungerboeck.Api.Models.Bulk.BulkResponseModel Bulk(Ungerboeck.Api.Models.Bulk.BulkRequestModel bulkRequestModel, Ungerboeck.Api.Models.Options.Subjects.RegistrationOrders options = null)
-    {
-      return base.BulkSync(bulkRequestModel, options);
-    }
-
-    /// <summary>
-    /// You can do multiple save operations in one transaction.  See the API Help sandbox for a list of what has Bulk.
-    /// </summary>
-    /// <param name="bulkRequestModel">This contains the list of bulk items, as well as the choice to continue on failure of a save.</param>
-    /// <returns>BuldResponseModel, containing the results of the bulk process</returns>
-    public Task<Ungerboeck.Api.Models.Bulk.BulkResponseModel> BulkAsync(Ungerboeck.Api.Models.Bulk.BulkRequestModel bulkRequestModel, Ungerboeck.Api.Models.Options.Subjects.RegistrationOrders options = null)
-    {
-      return base.BulkAsync(bulkRequestModel, options);
     }
   }
 }

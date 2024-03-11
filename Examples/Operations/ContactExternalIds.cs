@@ -70,7 +70,18 @@ namespace Examples.Operations
       var myExternalSystem = apiClient.Endpoints.ContactExternalIds.Get(id);
       myExternalSystem.NumericID = newNumericId;
 
-      return apiClient.Endpoints.ContactExternalIds.Update(myExternalSystem);
+      return apiClient.Endpoints.ContactExternalIds.Update(id, myExternalSystem);
+    }
+
+    /// <summary>
+    /// A basic edit example for Numeric ID
+    /// </summary> 
+    public ContactExternalIdsModel EditNumericId(int id, long newNumericId)
+    {
+      var myExternalSystem = apiClient.Endpoints.ContactExternalIds.Get(id);
+      myExternalSystem.NumericID = newNumericId;
+
+      return apiClient.Endpoints.ContactExternalIds.Update(id, myExternalSystem);
     }
 
     /// <summary>
@@ -81,7 +92,7 @@ namespace Examples.Operations
       var myExternalSystem = apiClient.Endpoints.ContactExternalIds.Get(id);
       myExternalSystem.TextID = newTextId;
 
-      return apiClient.Endpoints.ContactExternalIds.Update(myExternalSystem);
+      return apiClient.Endpoints.ContactExternalIds.Update(id, myExternalSystem);
     }
 
     /// <summary>
