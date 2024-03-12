@@ -1,6 +1,7 @@
 ﻿using Ungerboeck.Api.Models.Subjects;
 using Ungerboeck.Api.Models.Options;
 using System.Net.Http;
+using System;
 
 namespace Ungerboeck.Api.Sdk.Endpoints
 {
@@ -39,9 +40,9 @@ namespace Ungerboeck.Api.Sdk.Endpoints
     /// <param name="model">This should contain a filled model of this subject.  Note that any null model properties will be ignored for the save.</param>
     /// <param name="options">This contains optional configurations.</param>
     /// <returns>An updated, single model for this subject.</returns>
-    public ContactExternalIdsModel Update(ContactExternalIdsModel model, Ungerboeck.Api.Models.Options.Subjects.ContactExternalIds options = null)
+    public ContactExternalIdsModel Update(int id, ContactExternalIdsModel model, Ungerboeck.Api.Models.Options.Subjects.ContactExternalIds options = null)
     {
-      return base.Update(new { model.ID }, model, options);
+      return base.Update(new { id }, model, options);
     }
 
     /// <summary>

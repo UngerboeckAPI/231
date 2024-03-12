@@ -3,7 +3,6 @@ using Ungerboeck.Api.Models.Subjects;
 using System.Collections.Generic;
 using Ungerboeck.Api.Models.Options;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Ungerboeck.Api.Sdk.Endpoints
 {
@@ -58,31 +57,5 @@ namespace Ungerboeck.Api.Sdk.Endpoints
     {
       return base.Add(model, options);
     }
-
-    /// <summary>
-    /// Custom endpoint.  Create a new Event from an existing event opportunity.
-    /// </summary>
-    /// <param name="orgCode">The organization code of the event opportunity.</param>
-    /// <param name="meetingSequence">The sequence of the event opportunity.</param>
-    /// <returns>Newly added EventOpportunitiesModel</returns>
-    public EventsModel CreateEvent(string orgCode, int meetingSequence, Ungerboeck.Api.Models.Options.Subjects.EventOpportunities options = null)
-    {
-      var task = CreateEventAsync(orgCode, meetingSequence, options);
-      return CustomSync(task);
-    }
-
-    /// <summary>
-    /// Custom endpoint.  Create a new Event from an existing event opportunity.
-    /// </summary>
-    /// <param name="orgCode">The organization code of the event opportunity.</param>
-    /// <param name="meetingSequence">The sequence of the event opportunity.</param>
-    /// <returns>Newly added EventOpportunitiesModel</returns>
-    public Task<EventsModel> CreateEventAsync(string orgCode, int meetingSequence, Ungerboeck.Api.Models.Options.Subjects.EventOpportunities options = null)
-    {
-      object item = null; //This endpoint does not have a posted item
-      Task<EventsModel> response = PostAsync<object, EventsModel>(Client, $"EventOpportunities/{orgCode}/{meetingSequence}/CreateEvent", item, options);
-      return response;
-    }
-
   }
 }
